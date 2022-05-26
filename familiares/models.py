@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from datetime import datetime, date
 
 class persona(models.Model):
     name = models.TextField()
@@ -12,20 +13,4 @@ class persona(models.Model):
     ],
         blank=True,null=True)
 
-    birth_date_d = models.IntegerField(validators=[
-        MaxValueValidator(2),
-        MinValueValidator(1)
-    ],
-        blank=True,null=True)
-
-    birth_date_m = models.IntegerField(validators=[
-        MaxValueValidator(2),
-        MinValueValidator(1)
-    ],
-        blank=True,null=True)
-
-    birth_date_y = models.IntegerField(validators=[
-        MaxValueValidator(2),
-        MinValueValidator(1)
-    ],
-        blank=True,null=True)
+    birth_date = models.DateField(auto_now_add=False,auto_now=False,null=True,blank=True)
