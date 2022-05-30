@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Filter</title>
 </head>
 <body>
+    {% for i in family_data %}
 
-    <form method="POST" action)="">
-        {% csrf_token %}
-        Ingrese un nuevo familiar<br>
+        {{ i.name }} {{ i.surname }}<br>
+        {{ i.relationship }}<br>
+        {{ i.phone_number }}<br>
+        {{ i.birth_date }} <br><br>
 
-        {{ form.as_p }} <br>
-
-        <button type='submit', name='save'>Create New</button>
-    </form>
+    {% endfor %}
 </body>
 </html>
