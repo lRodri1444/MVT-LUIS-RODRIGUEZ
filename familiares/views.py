@@ -12,5 +12,5 @@ def index(request):
     return render(request,'familiares/data.html',{'form':form})
 
 def db(request):
-    filtro = Persona.objects.all()
+    filtro = Persona.objects.filter()
     return render(request, 'familiares/filter.html',{'family_data':filtro})

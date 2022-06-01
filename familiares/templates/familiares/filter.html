@@ -1,11 +1,6 @@
 {% extends 'familiares/base.html' %}
 {% block content %}
-    {% for i in family_data %}
-
-        {{ i.name }} {{ i.surname }}<br>
-        {{ i.relationship }}<br>
-        {{ i.phone_number }}<br>
-        {{ i.birth_date }} <br><br>
-
-    {% endfor %}
+    <div id="left">
+        Enter the phone number of the person <input type="number" name="phone_number_contains" placeholder="i.e. 123456789">
+    </div>
 {% endblock content %}
