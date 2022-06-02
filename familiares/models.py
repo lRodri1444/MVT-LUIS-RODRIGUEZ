@@ -10,7 +10,8 @@ class Persona(models.Model):
         validators=[
             MinValueValidator(100000000, message='Telephone number must contain 9 digits'),
             MaxValueValidator(999999999, message='Telephone number must contain 9 digits')
-        ]
+        ],
+        null=True
     )
 
     birth_date = models.DateField(auto_now_add=False,auto_now=False,null=True,blank=True)

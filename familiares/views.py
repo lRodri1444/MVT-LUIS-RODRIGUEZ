@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from .forms import PersonaForm
 from .models import Persona
 
@@ -11,6 +12,15 @@ def index(request):
             form.save()
     return render(request,'familiares/data.html',{'form':form})
 
-def db(request):
-    filtro = Persona.objects.filter()
-    return render(request, 'familiares/filter.html',{'family_data':filtro})
+def filter_input(request): 
+    return render(request, 'familiares/filter.html')
+
+def filter_display(request):
+    personas = Persona.objects.all()
+    phonenum = request.GET.get('phonenum')
+    if phonenum:
+        personas = personas.filter(phone_number=phonenum)
+        return render(request, 'familiares/filter_results.html',{'personaskey':personas, 'phonefiltro':phonenum})
+    else:
+        response = 'No data sent'    
+    return HttpResponse(response)

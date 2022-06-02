@@ -1,6 +1,11 @@
 {% extends 'familiares/base.html' %}
 {% block content %}
     <div id="left">
-        Enter the phone number of the person <input type="number" name="phone_number_contains" placeholder="i.e. 123456789">
+        <form method='GET' action="/filter/filter_results">
+            {% csrf_token %}
+            <input type='number' name="phonenum" id="phonenum" placeholder="i.e. 123456789" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;">
+    
+            <input type="submit" value="Search" class="btn btn-dark">   
+        </form>
     </div>
 {% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'familiares/base.html' %}
+{% block content %}
+    <div id="left">
+        <p>Info available for the family member with phone number : {{ phonefiltro }}</p>
+
+        {% if personaskey %}
+            {% for k in personaskey %}
+
+                <p>Full Name: {{ k.name }} {{ k.surname }}</p>
+                <p>Relationship: {{ k.relationship }}</p>
+                <p>Birthday : {{ k.birth_date }}</p>
+                <hr id="filter_hr">
+            
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}    
+
