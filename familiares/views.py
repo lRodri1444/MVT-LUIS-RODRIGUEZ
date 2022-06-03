@@ -12,15 +12,12 @@ def index(request):
             form.save()
     return render(request,'familiares/data.html',{'form':form})
 
-def filter_input(request): 
-    return render(request, 'familiares/filter.html')
-
-def filter_display(request):
+def filter_input(request):
     personas = Persona.objects.all()
-    phonenum = request.GET.get('phonenum')
+    phonenum = request.GET.get('phonenum')    
     if phonenum:
-        personas = personas.filter(phone_number=phonenum)
-        return render(request, 'familiares/filter_results.html',{'personaskey':personas, 'phonefiltro':phonenum})
+        personas = personas.filter(phone_number = phonenum)
+        template_name = 'familiares/filter_results.html'
     else:
-        response = 'No data sent'    
-    return HttpResponse(response)
+        template_name = 'familiares/filter.html'
+    return render(request, template_name,{'personaskey':personas, 'phonefiltro':phonenum})

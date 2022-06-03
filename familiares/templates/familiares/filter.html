@@ -1,7 +1,7 @@
 {% extends 'familiares/base.html' %}
 {% block content %}
     <div id="left">
-        <form method='GET' action="/filter/filter_results">
+        <form method='GET' action="/filter/">
             {% csrf_token %}
             <input type='number' name="phonenum" id="phonenum" placeholder="i.e. 123456789" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;">
     
