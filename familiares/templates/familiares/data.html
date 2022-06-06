@@ -5,7 +5,7 @@
             {% csrf_token %}
             Add a new family member<br><br>
     
-            {{ form.as_p }}
+            {{ form.as_p }} {{ jobform.as_p }} {{ migrationform.as_p }}
     
             <button type='submit' name='save' class="btn btn-dark">Create New</button>
         </form>

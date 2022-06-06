@@ -3,22 +3,48 @@
     <div id="left">
         <form method='GET' action="/filter/">
             {% csrf_token %}
-            <input type='number' name="phonenum" id="phonenum" placeholder="i.e. 123456789" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;">
 
-            <input type="submit" value="Search" class="btn btn-dark">   
+            Enter the 8 digits of the user's document ID <br>
+            <input type='number' name="documentnum" id="documentnum" placeholder="i.e. 12345678" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"><br><br>
+
+            Enter the 9 digits of the user's social security number <br>
+            <input type="number" name="hinum" id="hinum" placeholder="i.e. 123456789" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;"><br><br>
+
+            Enter the 9 digits of the user's passport number <br>
+            <input type="number" name="pspnum" id="pspnum" placeholder="i.e. 123456789" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;"><br><br>
+            
+            <input type="submit" value="Search" class="btn btn-dark">    
         </form>
     </div>
     <div id="left">
-        <p>Info available for the family member with phone number : {{ phonefiltro }}</p>
+        <p>Info available for the family member with document number: {{ documentfiltro }}, SSC : {{ hifiltro }} and passport ID : {{ pspfiltro }}</p>
+        <hr id="filter_hr">
 
         {% if personaskey %}
             {% for k in personaskey %}
 
                 <p>Full Name: {{ k.name }} {{ k.surname }}</p>
-                <p>Relationship: {{ k.relationship }}</p>
+                <p>Civil Status: {{ k.civil_status }}</p>
+                <p>Phone Number: {{ k.phone_number }}</p>
                 <p>Birthday : {{ k.birth_date }}</p>
-                <hr id="filter_hr">
             
+            {% endfor %}
+        {% endif %}
+
+        {% if jobskey %}
+            {% for l in jobskey %}
+
+                <p>Contractual Status: {{ l.rol }}</p>
+        
+            {% endfor %}
+        {% endif %}
+
+        {% if migrationskey %}
+            {% for j in migrationskey %}
+
+                <p>Birth Country: {{ j.country }}</p>
+                <hr id="filter_hr">
+    
             {% endfor %}
         {% endif %}
     </div>

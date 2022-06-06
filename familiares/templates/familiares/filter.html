@@ -3,8 +3,16 @@
     <div id="left">
         <form method='GET' action="/filter/">
             {% csrf_token %}
-            <input type='number' name="phonenum" id="phonenum" placeholder="i.e. 123456789" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;">
-    
+
+            Enter the 8 digits of the user's document ID <br>
+            <input type='number' name="documentnum" id="documentnum" placeholder="i.e. 12345678" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;"><br><br>
+
+            Enter the 9 digits of the user's social security number <br>
+            <input type="number" name="hinum" id="hinum" placeholder="i.e. 123456789" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;"><br><br>
+
+            Enter the 9 digits of the user's passport number <br>
+            <input type="number" name="pspnum" id="pspnum" placeholder="i.e. 123456789" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;"><br><br>
+            
             <input type="submit" value="Search" class="btn btn-dark">   
         </form>
     </div>
