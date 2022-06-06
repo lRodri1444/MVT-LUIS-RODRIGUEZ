@@ -3,6 +3,24 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from .choices import ROL_CHOICES, CIVIL_CHOICES
 from django_countries.fields import CountryField
 
+#Snippets
+
+def eigth_digits(field):             #(string)
+    validator_eigth=[
+            MinValueValidator(10000000, message = field + ' must contain 8 numbers'),
+            MaxValueValidator(99999999, message = field + ' must contain 8 numbers')
+        ]
+    return validator_eigth
+
+def nine_digits(field):              #(string)
+    validator_nine=[
+            MinValueValidator(100000000, message = field + ' must contain 9 numbers'),
+            MaxValueValidator(999999999, message = field + ' must contain 9 numbers')
+        ]
+    return validator_nine
+
+#Models
+
 class Persona(models.Model):
     name = models.CharField(max_length=200)
     surname = models.CharField(max_length=200)
@@ -12,10 +30,7 @@ class Persona(models.Model):
         default='Single'
     )
     document_id = models.PositiveIntegerField(
-        validators=[
-            MinValueValidator(10000000, message='Document ID must contain 8 digits'),
-            MaxValueValidator(99999999, message='Document ID must contain 8 digits')
-        ],
+        validators=eigth_digits('Document ID'),
         verbose_name='Document ID',
         null=True,
         unique=True,
@@ -25,11 +40,8 @@ class Persona(models.Model):
     )
 
     phone_number = models.PositiveIntegerField(
-        validators=[
-            MinValueValidator(100000000, message='Telephone number must contain 9 digits'),
-            MaxValueValidator(999999999, message='Telephone number must contain 9 digits')
-        ],
-        null=True
+        validators=nine_digits('Phone number'),
+        null=True,
     )
 
     birth_date = models.DateField(auto_now_add=False,auto_now=False,null=True,blank=True)
@@ -41,10 +53,7 @@ class Job(models.Model):
         default='EM'
     )
     health_insurance = models.PositiveIntegerField(
-        validators=[
-            MinValueValidator(100000000, message='Telephone number must contain 9 digits'),
-            MaxValueValidator(999999999, message='Telephone number must contain 9 digits')
-        ],
+        validators=nine_digits('Health Insurance ID'),
         null=True,
         verbose_name= 'Health Insurance ID',
         unique=True,
@@ -56,15 +65,12 @@ class Job(models.Model):
 class Migration(models.Model):
     country = CountryField()
     passport_id = models.PositiveIntegerField(
-        validators=[
-            MinValueValidator(100000000, message='Passport ID must contain 9 digits'),
-            MaxValueValidator(999999999, message='Passport ID must contain 9 digits')
-        ],
+        validators=nine_digits('Passport ID'),
         verbose_name='Passport ID',
         null=True,
         unique=True,
         error_messages={
-            'unique':'A user with this passport_id ID already exists'
+            'unique':'A user with this passport ID already exists'
         }
     )
 

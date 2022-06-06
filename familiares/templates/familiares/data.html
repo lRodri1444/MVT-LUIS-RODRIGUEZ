@@ -5,9 +5,39 @@
             {% csrf_token %}
             Add a new family member<br><br>
     
-            {{ form.as_p }} {{ jobform.as_p }} {{ migrationform.as_p }}
+            Given name(s): {{ form.name }} Given surname(s): {{ form.surname }} <br><br>
+            Document ID: {{ form.document_id }} Civil Status: {{ form.civil_status }} <br><br>
+            Telephone number: {{ form.phone_number }} Birth date: {{ form.birth_date }} <br><br>
+            Current professional situation: {{ jobform.rol }} Health Insurance ID: {{ jobform.health_insurance }} <br><br>
+            Country: {{ migrationform.country }} Passport ID: {{ migrationform.passport_id }} <br><br>
     
             <button type='submit' name='save' class="btn btn-dark">Create New</button>
-        </form>
+        </form> <br>
+        
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <p> {{ error }} </p>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        {% if jobform.errors %}
+            {% for field in jobform %}
+                {% for error in field.errors %}
+                    <p> {{ error }} </p>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+
+        {% if migrationform.errors %}
+            {% for field in migrationform %}
+                {% for error in field.errors %}
+                    <p> {{ error }} </p>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
     </div>
 {% endblock content %}

@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from itertools import chain
 from .forms import PersonaForm, JobForm, MigrationForm
 from .models import Persona, Job, Migration
 
